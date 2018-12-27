@@ -7,7 +7,10 @@ import React from "react";
  * Variables
  */
 const style = {
-    color: "red",
+    boxShadow: "2px 2px 10px #EEE",
+    fontSize: "2em",
+    width: "50%",
+    margin: "2% auto"
 }
 
 /**

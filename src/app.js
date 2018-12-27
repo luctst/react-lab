@@ -16,15 +16,20 @@ const root = document.querySelector("#root");
 class App extends React.Component {
     state = {
         person: [
-            { name: "Lucas", age: 23 }
+            { name: "Lucas", age: 23 },
+            {name: 'Tommy', age: 22}
         ],
-        test: "don't change"
+        test: "don't change",
+        showPerson: false
     }
     switchNameHandler = () => {
+        let d = this.state.showPerson;
         this.setState({
             person: [
-                {name: "Tommy", age:23},
-            ]
+                { name: "Max", age: 23 },
+                { name: 'Tommy', age: 22 }
+            ],
+            showPerson: !d,
         });
     }
     alertHandler = () => {
@@ -38,14 +43,23 @@ class App extends React.Component {
         });
     }
     render() {
-        return (
-            <React.Fragment>
-                <Person alert={this.alertHandler}>And i like movies</Person>
-                <Person name={this.state.person[0].name} age={this.state.person[0].age}/>
+        if (this.state.showPerson) {
+            return (
+                <React.Fragment>
+                    {
+                        this.state.person.map(el => {
+                            return <Person name={el.name} age={el.age} alert={this.alertHandler}/>
+                        })
+                    }
+                    <button onClick={this.switchNameHandler}>Switch name</button>
+                    <input type="text" onChange={this.getNameHandler}></input>
+                </React.Fragment>
+            );
+        } else {
+            return (
                 <button onClick={this.switchNameHandler}>Switch name</button>
-                <input type="text" onChange={this.getNameHandler}></input>
-            </React.Fragment>
-        )
+            );
+        }
     }
 }
 
