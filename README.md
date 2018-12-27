@@ -1,2 +1,1 @@
-# react-test
-Test on ReactJs
+# React-test
