@@ -62,3 +62,6 @@ typings/
 
 # MAC files
 .DS_STORE
+
+# not need
+package-lock.json
