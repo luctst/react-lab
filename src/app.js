@@ -3,7 +3,7 @@
  */
 import React from "react";
 import { render } from "react-dom";
-import Person from "./view/Person";
+import Person from "./view/components/Person";
 
 /**
  * Variables
@@ -14,13 +14,16 @@ const root = document.querySelector("#root");
  * Declaration
  */
 class App extends React.Component {
-    state = {
-        person: [
-            { name: "Lucas", age: 23 },
-            {name: 'Tommy', age: 22}
-        ],
-        test: "don't change",
-        showPerson: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            person: [
+                { name: "Lucas", age: 23 },
+                { name: 'Tommy', age: 22 }
+            ],
+            test: "don't change",
+            showPerson: false
+        }
     }
     switchNameHandler = () => {
         let d = this.state.showPerson;

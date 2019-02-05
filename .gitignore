@@ -60,8 +60,7 @@ typings/
 # next.js build output
 .next
 
-# MAC files
+# Not need
 .DS_STORE
-
-# not need
+.vscode
 package-lock.json
