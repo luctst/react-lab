@@ -4,6 +4,7 @@
 import React from "react";
 import { render } from "react-dom";
 import Person from "./view/components/Person";
+import LifeCycle from "./view/components/LifeCycle";
 
 /**
  * Variables
@@ -50,10 +51,9 @@ class App extends React.Component {
             return (
                 <React.Fragment>
                     {
-                        this.state.person.map(el => {
-                            return <Person name={el.name} age={el.age} alert={this.alertHandler}/>
-                        })
+                        this.state.person.map(el => <Person name={el.name} age={el.age} alert={this.alertHandler}/>)
                     }
+                    <LifeCycle/>
                     <button onClick={this.switchNameHandler}>Switch name</button>
                     <input type="text" onChange={this.getNameHandler}></input>
                 </React.Fragment>
