@@ -1,5 +1,5 @@
 # React-test
-*Learn React by testing the librairies*
+*Learn React by testing, this doc right below hold some tips to remember importants things with React, his goal is not to rewrite the official doc which is really good this is just some remember with my own words.*
 
 ## Component Lifecycle:
 *Every component in React has several lifecycle methods that we can use to run code at a particular times. They are three steps in the lifecycle of a component:*
@@ -22,3 +22,6 @@
 ## Unmounting Method:
 *When a component is being removed from the DOM.*
 * `componentWillUnmount()`.
+
+## Context:
+*In a typical application when you have to pass data parent to child you use the props object but when your application is becoming bigger it can be hard to manage props, Context provides a way to share data parent -> child without using props.*
