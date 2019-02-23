@@ -8,7 +8,6 @@
 *When a component is being created and inserted in the DOM.*
 * `constructor()`.
 * `static getDerivedStateFromProps()`.
-* `componentWillMount()`.
 * `render()`.
 * `componentDidMount()`.
 
