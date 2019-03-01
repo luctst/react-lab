@@ -23,5 +23,19 @@
 *When a component is being removed from the DOM.*
 * `componentWillUnmount()`.
 
+## State, props:
+*In an React app you will see a lot of components are just javascript class or functions that optionally accepts, hold data (props, state) and return an element with this data who describe how the UI should be render.*
+
+### State:
+*The state contains data specific to THIS component that may change over time. The state is user-defined, and it should be a plain JavaScript object, but it can be a number, string etc..*
+
+
+
+### Props:
+
 ## Context:
 *In a typical application when you have to pass data parent to child you use the props object but when your application is becoming bigger it can be hard to manage props, Context provides a way to share data parent -> child without using props.*
+
+## Ref:
+
+## Hook:
