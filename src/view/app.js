@@ -3,7 +3,6 @@
  */
 import React from "react";
 import Person from "./components/Person";
-import LifeCycle from "./components/LifeCycle";
 
 /**
  * App component
@@ -18,27 +17,33 @@ export default class App extends React.Component {
             ],
             showPerson: false
         }
+        this.switchNameHandler = this.switchNameHandler.bind(this);
+        this.getNameHandler = this.getNameHandler.bind(this);
     }
-    switchNameHandler = () => {
-        let d = this.state.showPerson;
-        this.setState({
-            person: [
-                { name: "Max", age: 23 },
-                { name: 'Tommy', age: 22 }
-            ],
-            showPerson: !d,
+    switchNameHandler() {
+        this.setState((prevState, nextState) => {
+            return {
+                person: [
+                    { name: "Max", age: 23 },
+                    { name: 'Tommy', age: 22 }
+                ],
+                showPerson: !prevState.showPerson
+            }
         });
     }
-    alertHandler = () => {
+
+    alertHandler() {
         alert(`This is an alert !!`);
     }
-    getNameHandler = event => {
+
+    getNameHandler(event) {
         this.setState({
             person: [
                 {name: event.target.value, age: 23}
             ]
         });
     }
+
     render() {
         if (this.state.showPerson) {
             return (
@@ -46,7 +51,6 @@ export default class App extends React.Component {
                     {
                         this.state.person.map(el => <Person key={el.name} name={el.name} age={el.age} alert={this.alertHandler}/>)
                     }
-                    <LifeCycle/>
                     <button onClick={this.switchNameHandler}>Switch name</button>
                     <input type="text" onChange={this.getNameHandler}></input>
                 </React.Fragment>

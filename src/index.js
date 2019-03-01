@@ -8,7 +8,7 @@ import App from "./view/app";
 const app = document.querySelector("#root");
 
 /**
- * Déclaration
+ * Main component hold all our components to be render.
  */
 class Main extends React.Component {
     render() {
