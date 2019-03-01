@@ -14,7 +14,7 @@ const style = {
 }
 
 /**
- * Declaration
+ * Render the person component with infos.
  */
 const Person = props => {
     return (

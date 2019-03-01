@@ -1,20 +1,14 @@
 /**
- * Import
+ * Import, Variables
  */
 import React from "react";
-import { render } from "react-dom";
-import Person from "./view/components/Person";
-import LifeCycle from "./view/components/LifeCycle";
+import Person from "./components/Person";
+import LifeCycle from "./components/LifeCycle";
 
 /**
- * Variables
+ * App component
  */
-const root = document.querySelector("#root");
-
-/**
- * Declaration
- */
-class App extends React.Component {
+export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +16,6 @@ class App extends React.Component {
                 { name: "Lucas", age: 23 },
                 { name: 'Tommy', age: 22 }
             ],
-            test: "don't change",
             showPerson: false
         }
     }
@@ -51,7 +44,7 @@ class App extends React.Component {
             return (
                 <React.Fragment>
                     {
-                        this.state.person.map(el => <Person name={el.name} age={el.age} alert={this.alertHandler}/>)
+                        this.state.person.map(el => <Person key={el.name} name={el.name} age={el.age} alert={this.alertHandler}/>)
                     }
                     <LifeCycle/>
                     <button onClick={this.switchNameHandler}>Switch name</button>
@@ -65,8 +58,3 @@ class App extends React.Component {
         }
     }
 }
-
-/**
- * Execution
- */
-render(<App/>, root);
