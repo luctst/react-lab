@@ -2,7 +2,7 @@
  * Import, Variables
  */
 import React from "react";
-import Person from "./components/Person";
+import Person from "../components/Person";
 
 /**
  * App component
