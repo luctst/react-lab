@@ -3,6 +3,7 @@
  */
 import React from "react";
 import Person from "../components/Person";
+import Header from "../components/Header";
 
 /**
  * App component
@@ -20,6 +21,7 @@ export default class App extends React.Component {
         this.switchNameHandler = this.switchNameHandler.bind(this);
         this.getNameHandler = this.getNameHandler.bind(this);
     }
+    
     switchNameHandler() {
         this.setState((prevState, nextState) => {
             return {
@@ -45,20 +47,18 @@ export default class App extends React.Component {
     }
 
     render() {
-        if (this.state.showPerson) {
-            return (
-                <React.Fragment>
-                    {
-                        this.state.person.map(el => <Person key={el.name} name={el.name} age={el.age} alert={this.alertHandler}/>)
-                    }
-                    <button onClick={this.switchNameHandler}>Switch name</button>
-                    <input type="text" onChange={this.getNameHandler}></input>
-                </React.Fragment>
-            );
-        } else {
-            return (
-                <button onClick={this.switchNameHandler}>Switch name</button>
-            );
-        }
+        return (
+            <>
+                <Header/>
+                {
+                    this.state.showPerson ?
+                        this.state.person.map((el, i) => <Person key={i} name={el.name} age={el.age} alert={this.alertHandler}/>)
+                    :<>
+                        <button onClick={this.switchNameHandler}>Switch name</button>
+                        <input type="text" onChange={this.getNameHandler}></input>
+                    </>
+                }
+            </>
+        );
     }
 }
