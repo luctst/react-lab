@@ -12,6 +12,7 @@ const Header = () => {
             <div className="row">
                 <div className="col-12">
                     <h1>React Test !</h1>
+                    <hr/>
                 </div>
             </div>
         </section>
