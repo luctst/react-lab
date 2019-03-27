@@ -51,13 +51,13 @@ const Counter = props => {
     );
 }
 
-const mapStateToProps = state => {
+const mapState = state => {
     return {
         ctr: state.counter
     }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatch = dispatch => {
     return {
         onHandleClick: () => dispatch({type:actions.ADD}),
         onDecrementClick: () => dispatch({type:actions.DECREMENT}),
@@ -66,4 +66,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapState, mapDispatch)(Counter);
