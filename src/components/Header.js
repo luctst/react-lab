@@ -11,7 +11,7 @@ const Header = () => {
         <section className="container mt-3 mb-3">
             <div className="row">
                 <div className="col-12">
-                    <h1>React Test !</h1>
+                    <h1>Todo app</h1>
                     <hr/>
                 </div>
             </div>
