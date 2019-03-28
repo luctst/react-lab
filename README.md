@@ -1,4 +1,4 @@
-# React-test
+# React-Lab
 *If you can explain something with simple words it means that you understood it.*
 
 ## What is ReactJs ?
@@ -66,3 +66,12 @@ Can change in child Components? | Yes | No
 ## Ref:
 
 ## Hook:
+
+# Redux:
+*Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.*
+
+## Why Redux ?
+
+## Examples:
+* **Simple counter** - Check the `test-redux` branch.
+* **Todo app** - Check the `test-redux-todo` branch.
