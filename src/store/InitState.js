@@ -2,7 +2,8 @@
  * Import, variables..
  */
 const initialState = {
-    counter: 0
+    tasks: [],
+    noTask: "There is no task here.."
 };
 
 export default initialState;
