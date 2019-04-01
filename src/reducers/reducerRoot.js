@@ -1,33 +1,14 @@
 /**
- * Import, variables, actions
+ * Import, variables
  */
-import * as actions from "../actions/actions";
-import initialState from "../store/InitState";
+import reducerTaskList from "../reducers/reducerTaskList";
+import {combineReducers} from "redux";
 
 /**
- * root reducer update the counter of our `Counter` component
+ * Create the root reducer
  */
-const reducerRoot = (state = initialState, action) => {
-    switch (action.type) {
-        case actions.ADD: {
-            const newState = Object.assign({}, state, { counter: state.counter + 1});
-            return newState;
-        }   
-        case actions.DECREMENT: {
-            const newState = {counter: state.counter - 1};
-            return {...state, ...newState}
-        }
-        case actions.ADD_WITH: {
-            const newState = {counter: state.counter + action.value};
-            return {...state, ...newState};
-        }
-        case actions.DECREMENT_WITH: {
-            const newState = {counter: state.counter - action.value};
-            return {...state, ...newState};
-        }
-        default:
-            return state;
-    }
-}
+const rootReducer = combineReducers({
+    reducerTaskList,
+});
 
-export default reducerRoot;
+export default rootReducer;
