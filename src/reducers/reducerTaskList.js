@@ -1,10 +1,10 @@
 /**
  * Import, variables
  */
-import initState from "../store/InitState";
+import appState from "../store/appState";
 import * as getAction from "../actions/actions";
 
-const reducerTaskList = (state = initState, action) => {
+const reducerTaskList = (state = appState, action) => {
     switch (action.type) {
         case getAction.ADD_TASK: {
             if (state.tasks.includes(action.value)) {
@@ -22,6 +22,15 @@ const reducerTaskList = (state = initState, action) => {
             const newTab = [...state.tasks];
 
             newTab.splice(index, 1);
+
+            const newState = {...state, tasks: newTab};
+            return newState;
+        }
+        case getAction.UPDATE: {
+            const newTab = [...state.tasks];
+            const indexToUpdate = newTab.indexOf(action.data.oldValue);
+
+            newTab[indexToUpdate] = action.data.newValue;
 
             const newState = {...state, tasks: newTab};
             return newState;

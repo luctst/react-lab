@@ -3,7 +3,7 @@
  */
 import React, {useState, useRef} from "react";
 import store from "../store/Store";
-import TaskList from "../components/TaskList";
+import TaskList from "./TaskList";
 
 /**
  * Render the input to add Task in your todo app.
@@ -11,7 +11,6 @@ import TaskList from "../components/TaskList";
 const AddTask = () => {
     const [state, setState] = useState({input: "", ...store.getState()});
     const input = useRef();
-    console.log("NEW STATE", state);
 
     store.subscribe(() => {
         setState({input: input.current.value, ...store.getState()});
