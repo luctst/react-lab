@@ -1,7 +1,7 @@
 /**
  * Import, variables
  */
-import reducerTaskList from "../reducers/reducerTaskList";
+import reducerTaskList from "./reducerTaskList";
 import {combineReducers} from "redux";
 
 /**
