@@ -4,9 +4,8 @@
   "description": "Test with react",
   "main": "",
   "scripts": {
-    "test": "",
-    "build": "webpack -mode=production",
-    "start": "webpack-dev-server"
+    "build": "webpack --env.filename='todo' -mode=production",
+    "start": "webpack-dev-server --env.filename='todo'"
   },
   "repository": {
     "type": "git",
