@@ -1,6 +1,10 @@
 # React-Lab
 *If you can explain something with simple words it means that you understood it.*
 
+## Projects:
+* **Simple counter** - Find the code here -> `projects/counter/` on the branch `test-redux`.
+* **Todo app** - Find the code here -> `projects/todo/` on the branch `test-redux-todo`.
+
 ## What is ReactJs ?
 *ReactJs is a JavaScript librairy who allow you to building user interfaces.*
 
@@ -49,8 +53,8 @@ The component who hold the props cannot change change its props instead it's his
 ### When use state or props ?
 *When a component needs to keep track of information between renderings the component itself can create, update, and use state.*
 
-| | _props_ | _state_ | 
---- | --- | --- 
+| | _props_ | _state_ |
+--- | --- | ---
 Can get initial value from parent Component? | Yes | Yes
 Can be changed by parent Component? | Yes | No
 Can set default values inside Component?* | Yes | Yes
@@ -71,7 +75,3 @@ Can change in child Components? | Yes | No
 *Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.*
 
 ## Why Redux ?
-
-## Examples:
-* **Simple counter** - Check the `test-redux` branch.
-* **Todo app** - Check the `test-redux-todo` branch.

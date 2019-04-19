@@ -2,7 +2,7 @@
  * Import, variables..
  */
 import React, {useState, useRef} from "react";
-import store from "../store/Store";
+import {store} from "../store/appState";
 import TaskList from "./TaskList";
 
 /**
@@ -39,8 +39,8 @@ const AddTask = () => {
                     </div>
                 </div>
             </section>
-            <TaskList 
-                taskData={state.reducerTaskList.tasks} 
+            <TaskList
+                taskData={state.reducerTaskList.tasks}
                 content={state.reducerTaskList.noTask}
             />
         </>
