@@ -3,7 +3,7 @@
  */
 import React, {useState} from "react";
 import NoTask from "../components/NoTask";
-import store from "../store/Store";
+import {store} from "../store/appState";
 const style = {
     "display": "flex",
     "justifyContent": "space-between"
@@ -20,24 +20,24 @@ const TaskList = props => {
     const handleFocus = (e, elementActive) => e.target.value = elementActive;
 
     const handleClickSpan = (e, index) => {
-        setState({ 
-            isInput: !state.isInput, 
-            inputActive: index, 
-            oldInputValue: e.target.innerText 
+        setState({
+            isInput: !state.isInput,
+            inputActive: index,
+            oldInputValue: e.target.innerText
         });
     }
 
     const handleChange = e => {
-        store.dispatch({ 
-            type: "UPDATE", 
+        store.dispatch({
+            type: "UPDATE",
             data: {
                 newValue: e.target.value,
                 oldValue: state.oldInputValue
-            } 
+            }
         });
     }
 
-    return props.taskData.length === 0 ? 
+    return props.taskData.length === 0 ?
         <NoTask content={props.content}/>
     :<section className="container">
         <div className="row">
@@ -45,14 +45,14 @@ const TaskList = props => {
                 <ul className="list-group">
                     {
                         props.taskData.map((el, i) => {
-                            return <li 
+                            return <li
                                         style={style}
-                                        key={el} 
+                                        key={el}
                                         className="list-group-item mt-2">
                                         {
                                             state.isInput && state.inputActive === i ?
-                                                <input 
-                                                    onFocus={(e) => handleFocus(e, el)} 
+                                                <input
+                                                    onFocus={(e) => handleFocus(e, el)}
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     autoFocus
