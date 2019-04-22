@@ -1,13 +1,6 @@
-/**
- * Import, variables
- */
-import React, {useState} from "react";
+import React, { useState } from "react";
 import NoTask from "../components/NoTask";
 import store from "../store/store";
-const style = {
-    "display": "flex",
-    "justifyContent": "space-between"
-}
 
 /**
  * Render the list of task.
@@ -15,54 +8,81 @@ const style = {
  * @param {String} props.visibilityTab Name of the visibility tab to update, find, delete a value.
  */
 const TaskList = props => {
-    const [state, setState] = useState({isInput: false, inputActive: 0, oldInputValue: ""});
+	const [state, setState] = useState({ isInput: false, inputActive: 0, oldInputValue: "" });
 
-	const handleClick = e => store.dispatch({ type: "DELETE", value: e.target.parentNode.firstElementChild.textContent, visibilityTab: props.visibilityTab});
+	const handleClick = e => {
+		if (e.target.textContent === "destroy") {
+			const deleteValidation = confirm(`Careful this action will destroy your task for ever.`);
 
-	const handleBlur = () => setState({isInput: !state.isInput});
+			deleteValidation ? store.dispatch({type: "DELETE", data: {taskToDelete: e.target.parentNode.firstElementChild.textContent}}) : null
+		} else {
+			store.dispatch({
+				type: "MOVE",
+				data: {
+					value: e.target.parentNode.firstElementChild.textContent,
+					visibilityTab: props.visibilityTab,
+					moveInTab: e.target.textContent
+				}
+			});
+		}
+	}
 
-    const handleFocus = (e, elementActive) => e.target.value = elementActive;
+	const handleBlur = () => setState({ isInput: !state.isInput });
 
-    const handleClickSpan = (e, index) => {
-        setState({
-            isInput: !state.isInput,
-            inputActive: index,
-            oldInputValue: e.target.innerText
-        });
-    }
+	const handleFocus = (e, elementActive) => e.target.value = elementActive;
 
-    const handleChange = (e, i) => store.dispatch({type: "UPDATE", data: {newValue: e.target.value, indexToUpdate: i, visibilityTab: props.visibilityTab}});
+	const handleClickSpan = (e, index) => {
+		setState({
+			isInput: !state.isInput,
+			inputActive: index,
+			oldInputValue: e.target.innerText
+		});
+	}
 
-    return props.taskData.length === 0 ?
-        <NoTask/>
-    :<section className="container">
-        <div className="row">
-            <div className="col-7">
-                <ul className="list-group">
-                    {
-                        props.taskData.map((el, i) => {
-                            return <li
-                                        style={style}
-                                        key={el}
-                                        className="list-group-item mt-2">
-                                        {
-                                            state.isInput && state.inputActive === i ?
-                                                <input
-                                                    onFocus={(e) => handleFocus(e, el)}
-                                                    onBlur={handleBlur}
-                                                    onChange={(e) => handleChange(e, i)}
-                                                    autoFocus
-                                                />
-                                            :<span onClick={(e) => handleClickSpan(e, i)}>{el}</span>
-                                        }
-                                        <span className="text-danger" onClick={handleClick}>Delete</span>
-                                    </li>
-                        })
-                    }
-                </ul>
-            </div>
-        </div>
-    </section>
+	const handleChange = (e, i) => store.dispatch({
+		type: "UPDATE",
+		data: {
+			newValue: e.target.value,
+			indexToUpdate: i,
+			visibilityTab: props.visibilityTab
+		}
+	});
+
+	return props.taskData.length === 0 ?
+		<NoTask tab={props.visibilityTab}/>
+		: <main className="container">
+			<div className="row">
+				<div className="col-7">
+					<ul className="list-group">
+						{
+							props.taskData.map((el, i) => {
+								return <li
+									key={el}
+									className="list-group-item mt-2 d-flex">
+									{
+										state.isInput && state.inputActive === i ?
+											<input
+												onFocus={(e) => handleFocus(e, el)}
+												onBlur={handleBlur}
+												onChange={(e) => handleChange(e, i)}
+												autoFocus
+											/>
+											: <span style={{ "marginRight": "auto" }} onClick={(e) => handleClickSpan(e, i)}>{el}</span>
+									}
+									<span className="text-warning mr-2" onClick={handleClick}>todo</span>
+									<span className="text-success mr-2" onClick={handleClick}>done</span>
+									<span className="text-danger" onClick={handleClick}>
+										{
+											props.visibilityTab === "deleted" ? "destroy" : "deleted"
+										}
+									</span>
+								</li>
+							})
+						}
+					</ul>
+				</div>
+			</div>
+		</main>
 };
 
 export default TaskList;
