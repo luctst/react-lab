@@ -5,7 +5,9 @@ body {
     cursor: pointer;
     border: 1px solid #eee;
 }
-.text-danger:hover {
+.text-danger:hover,
+.text-success:hover,
+.text-warning:hover {
     cursor: pointer;
 }
 .btn--filter > p {
