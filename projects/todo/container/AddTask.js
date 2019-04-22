@@ -1,20 +1,15 @@
-/**
- * Import, variables..
- */
 import React, {useState, useRef} from "react";
-import {store} from "../store/appState";
+import store from "../store/store";
 import TaskList from "./TaskList";
 
 /**
- * Render the input to add Task in your todo app.
+ * Render the input to add Task in your todo app and handle visibility filter.
  */
 const AddTask = () => {
-    const [state, setState] = useState({input: "", ...store.getState()});
+	const [state, setState] = useState({...store.getState()});
     const input = useRef();
 
-    store.subscribe(() => {
-        setState({input: input.current.value, ...store.getState()});
-    });
+    store.subscribe(() => setState({...store.getState()}));
 
     const handleClick = () => {
         if (input.current.value === "") {
@@ -23,7 +18,9 @@ const AddTask = () => {
             store.dispatch({ type: "ADD_TASK", value: input.current.value});
             input.current.value = "";
         }
-    }
+	}
+
+	const handleVisibility = e => store.dispatch({ type: e.target.textContent });
 
     return (
         <>
@@ -37,12 +34,40 @@ const AddTask = () => {
                     <div className="col-3">
                         <button className="btn btn-success" onClick={handleClick}>Add Task</button>
                     </div>
+					<div className="col-5 btn--filter">
+					{
+						Object.keys(state.tasksReducer).map((el, i) => {
+							if (i === 0) {
+								return <p
+											key={el}
+											style={{backgroundColor:"#ffc107"}}
+											className={state.tasksVisibilityReducer === el ? "is__active" : "is__not__active"} onClick={handleVisibility}>
+												<a>{el}</a>
+										</p>
+							} else if (i === 1) {
+								return <p
+											key={el}
+											style={{ backgroundColor: "#28a745" }}
+											className={state.tasksVisibilityReducer === el ? "is__active" : "is__not__active"} onClick={handleVisibility}>
+												<a>{el}</a>
+										</p>
+							} else if (i === 2) {
+								return <p
+											key={el}
+											style={{ backgroundColor: "#dc3545" }}
+											className={state.tasksVisibilityReducer === el ? "is__active" : "is__not__active"} onClick={handleVisibility}>
+												<a>{el}</a>
+										</p>
+							}
+						})
+					}
+					</div>
                 </div>
             </section>
-            <TaskList
-                taskData={state.reducerTaskList.tasks}
-                content={state.reducerTaskList.noTask}
-            />
+			<TaskList
+				taskData={state.tasksReducer[`${state.tasksVisibilityReducer}`]}
+				visibilityTab={state.tasksVisibilityReducer}
+			/>
         </>
     );
 };
