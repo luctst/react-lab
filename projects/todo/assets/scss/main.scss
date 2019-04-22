@@ -5,6 +5,28 @@ body {
     cursor: pointer;
     border: 1px solid #eee;
 }
-.text-danger:hover {
+.text-danger:hover,
+.text-success:hover,
+.text-warning:hover {
     cursor: pointer;
+}
+.btn--filter > p {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 .5em .5em 0;
+    padding: .3em .9em;
+	white-space: nowrap;
+}
+.btn--filter > p > a {
+	color: #fff!important;
+	font-size: 12px;
+}
+.btn--filter > p:hover {
+	cursor: pointer;
+}
+.is__not__active {
+	opacity: .3;
+}
+.is__active {
+	opacity: 1;
 }
