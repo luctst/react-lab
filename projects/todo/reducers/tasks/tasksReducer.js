@@ -1,29 +1,15 @@
-import {appState} from "../../store/appState";
+import appState from "../../state/state";
 import {ADD_TASK, DELETE, UPDATE} from "../../actions/tasks";
-import {ADD_TASK_FUNCTION} from "./utility";
+import {ADD_TASK_FUNCTION, DELETE_TASK_FUNCTION, UPTATE_TASK_FUNCTION} from "./utility";
 
-const tasksReducer = (state = appState, action) => {
+const tasksReducer = (state = appState.tasks, action) => {
     switch (action.type) {
         case ADD_TASK:
             return ADD_TASK_FUNCTION(state, action);
-        case DELETE: {
-            const index = state.tasks.indexOf(action.value);
-            const newTab = [...state.tasks];
-
-            newTab.splice(index, 1);
-
-            const newState = {...state, tasks: newTab};
-            return newState;
-        }
-        case UPDATE: {
-            const newTab = [...state.tasks];
-            const indexToUpdate = newTab.indexOf(action.data.oldValue);
-
-            newTab[indexToUpdate] = action.data.newValue;
-
-            const newState = {...state, tasks: newTab};
-            return newState;
-        }
+		case DELETE:
+			return DELETE_TASK_FUNCTION(state, action);
+        case UPDATE:
+			return UPTATE_TASK_FUNCTION(state, action);
         default:
             return state;
     }
