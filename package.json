@@ -5,7 +5,9 @@
   "main": "",
   "scripts": {
     "start-todo": "webpack-dev-server --env.filename='todo'",
-    "build-todo": "webpack --env.filename='todo' -mode=production"
+    "build-todo": "webpack --env.filename='todo' -mode=production",
+    "start-counter": "webpack-dev-server --env.filename='counter'",
+    "build-counter": "webpack --env.filename='counter' -mode=production"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "sass-loader": "^7.1.0",
+    "styled-components": "^4.2.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.2.1"
