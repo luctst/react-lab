@@ -1,11 +1,20 @@
-import React from "react";
+import React, {useState}  from "react";
+import {bindActionCreators} from "redux";
 import { connect } from "react-redux";
-import {ADD, DECREMENT} from "../actions/counter";
+import {ADD, DECREMENT, ADD_WITH, DECREMENT_WITH} from "../actions/counter";
 
-const Counter = ({ctr, incrementByOne, decrementByOne}) => {
-	const handleClickIncrement = () => incrementByOne();
+const Counter = ({ctr, ADD, DECREMENT, ADD_WITH, DECREMENT_WITH}) => {
+	const [state, setState] = useState(0);
 
-	const handleClickDecrement = () => decrementByOne();
+	const handleClickIncrement = () => ADD();
+
+	const handleClickDecrement = () => DECREMENT();
+
+	const handleBlur = e => setState(parseInt(e.target.value));
+
+	const addWith = () => ADD_WITH(state);
+
+	const decrement = () => DECREMENT_WITH(state);
 
 	return (
 		<section className="container">
@@ -16,7 +25,7 @@ const Counter = ({ctr, incrementByOne, decrementByOne}) => {
 			</div>
 			<div className="row">
 				<div className="col-4 form-group">
-					<input type="number" className="form-control" />
+					<input type="number" className="form-control" onBlur={handleBlur}/>
 				</div>
 			</div>
 			<div className="row">
@@ -27,10 +36,10 @@ const Counter = ({ctr, incrementByOne, decrementByOne}) => {
 					<button className="btn btn-danger" onClick={handleClickDecrement}>Decrement</button>
 				</div>
 				<div className="col-2 text-center">
-					<button className="btn btn-primary"></button>
+					<button className="btn btn-primary" onClick={addWith}>Add {state}</button>
 				</div>
 				<div className="col-2 text-center">
-					<button className="btn btn-warning"></button>
+					<button className="btn btn-warning" onClick={decrement}>Decrement with {state}</button>
 				</div>
 			</div>
 		</section>
@@ -44,10 +53,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return {
-		incrementByOne: () => dispatch(ADD()),
-		decrementByOne: () => dispatch(DECREMENT()),
-	}
+	return bindActionCreators({
+		ADD,
+		DECREMENT,
+		ADD_WITH,
+		DECREMENT_WITH
+	}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

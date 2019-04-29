@@ -12,6 +12,16 @@ const rootReducer = (state = appState, action) => {
 			newState.counter -= 1;
 			return newState;
 		}
+		case "ADD_WITH": {
+			const newState = {...state};
+			newState.counter += action.number;
+			return newState;
+		}
+		case "DECREMENT_WITH": {
+			const newState = {...state};
+			newState.counter -= action.number;
+			return newState;
+		}
 		default:
 			return state;
 	}
