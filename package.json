@@ -1,6 +1,6 @@
 {
-	"name": "react-test",
-	"private": true,
+  "name": "react-test",
+  "private": true,
   "version": "1.0.0",
   "description": "Test with react",
   "main": "",
